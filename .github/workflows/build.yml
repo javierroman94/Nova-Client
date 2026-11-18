@@ -43,16 +43,34 @@ jobs:
       - id: m
         run: echo "matriz=$(jq -c . versions.json)" >> "$GITHUB_OUTPUT"
 
+  # Publica los .jar en una release cuando llega una etiqueta vX.Y.Z, o cuando se sube a main
+  # un mod_version nuevo en gradle.properties (la etiqueta se crea sola si no existe).
   publicar:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
+      - id: v
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then tag="$GITHUB_REF_NAME"
+          else tag="v$(grep '^mod_version=' gradle.properties | cut -d= -f2)"; fi
+          if [ "$GITHUB_REF_TYPE" != "tag" ] && gh release view "$tag" >/dev/null 2>&1; then
+            echo "La versión $tag ya está publicada."; echo "tag=" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.v.outputs.tag != ''
+        uses: actions/download-artifact@v4
         with: { path: jars, pattern: nova-client-*, merge-multiple: true }
-      - uses: softprops/action-gh-release@v2
+      - if: steps.v.outputs.tag != ''
+        uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.v.outputs.tag }}
+          target_commitish: ${{ github.sha }}
           files: jars/*.jar
           generate_release_notes: true
