@@ -1,5 +1,6 @@
 package com.novapx.client.modules;
 
+import com.novapx.client.Compat;
 import com.novapx.client.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -20,7 +21,7 @@ public class ArmorModule extends Module {
             ItemStack s = c.player.getEquippedStack(slot);
             if (s.isEmpty()) continue;
             ctx.drawItem(s, x, y + used);
-            ctx.drawItemInSlot(c.textRenderer, s, x, y + used);
+            Compat.stackOverlay(ctx, c.textRenderer, s, x, y + used);
             if (s.isDamageable()) {
                 int left = s.getMaxDamage() - s.getDamage();
                 ctx.drawTextWithShadow(c.textRenderer, String.valueOf(left), x + 20, y + used + 5, 0xFFFFFFFF);

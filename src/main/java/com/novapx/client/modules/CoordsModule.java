@@ -11,6 +11,6 @@ public class CoordsModule extends Module {
     public String line(MinecraftClient client) {
         if (client.player == null) return null;
         BlockPos p = client.player.getBlockPos();
-        return "XYZ " + p.getX() + " " + p.getY() + " " + p.getZ() + "  " + client.player.getHorizontalFacing().asString().toUpperCase();
+        return "XYZ " + p.getX() + " " + p.getY() + " " + p.getZ() + "  " + client.player.getHorizontalFacing().asString().toUpperCase(java.util.Locale.ROOT);
     }
 }

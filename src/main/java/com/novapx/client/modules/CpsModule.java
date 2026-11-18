@@ -19,8 +19,8 @@ public class CpsModule extends Module {
         while (!q.isEmpty() && now - q.peekFirst() > 1000) q.pollFirst();
     }
 
-    @Override
-    public String line(MinecraftClient client) {
+    /** Mira los botones del ratón y cuenta cada clic nuevo. Se llama en cada tick y al dibujar, para no perder clics rápidos. */
+    private void poll(MinecraftClient client) {
         long now = System.currentTimeMillis();
         long handle = client.getWindow().getHandle();
         boolean l = GLFW.glfwGetMouseButton(handle, GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS;
@@ -31,6 +31,14 @@ public class CpsModule extends Module {
         wasRight = r;
         trim(left, now);
         trim(right, now);
+    }
+
+    @Override
+    public void tick(MinecraftClient client) { poll(client); }
+
+    @Override
+    public String line(MinecraftClient client) {
+        poll(client);
         return left.size() + " | " + right.size() + " CPS";
     }
 }

@@ -34,7 +34,7 @@ public final class ModuleManager {
 
     /** Dibuja el HUD: primero el texto de los módulos simples y luego los módulos gráficos. */
     public void draw(MinecraftClient client, DrawContext ctx) {
-        if (client.options.hudHidden || client.getDebugHud().shouldShowDebugHud()) return;
+        if (client.options.hudHidden || Compat.debugOpen(client)) return;
         int x = 6, y = 6;
         for (Module m : modules) {
             if (!m.isEnabled()) continue;

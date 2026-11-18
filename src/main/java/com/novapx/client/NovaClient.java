@@ -23,8 +23,8 @@ public class NovaClient implements ClientModInitializer {
         modules = new ModuleManager();
         Config.load(modules);
 
-        menuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.nova_client.menu", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT_SHIFT, "key.categories.nova_client"));
-        zoomKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.nova_client.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "key.categories.nova_client"));
+        menuKey = KeyBindingHelper.registerKeyBinding(Compat.key("key.nova_client.menu", GLFW.GLFW_KEY_RIGHT_SHIFT));
+        zoomKey = KeyBindingHelper.registerKeyBinding(Compat.key("key.nova_client.zoom", GLFW.GLFW_KEY_C));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (menuKey.wasPressed()) {
