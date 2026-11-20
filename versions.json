@@ -22,7 +22,7 @@
    "fabric": "0.46.1+1.17",
    "java": 16,
    "compat": "none",
-   "family": "ms17"
+   "family": "ms180"
   },
   {
    "mc": "1.18",
