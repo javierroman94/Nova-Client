@@ -7,12 +7,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class NovaClient implements ClientModInitializer {
     public static final String ID = "nova_client";
-    public static final Logger LOGGER = LoggerFactory.getLogger("Nova Client");
 
     public static ModuleManager modules;
     public static KeyBinding menuKey;
@@ -28,14 +25,14 @@ public class NovaClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (menuKey.wasPressed()) {
-                if (client.currentScreen == null) client.setScreen(new NovaMenuScreen(modules));
+                if (client.currentScreen == null) Env.open(client, new NovaMenuScreen(modules));
             }
             modules.tick(client);
         });
         HudRenderCallback.EVENT.register((ctx, tickCounter) -> {
-            var client = net.minecraft.client.MinecraftClient.getInstance();
-            if (client.player != null) modules.draw(client, ctx);
+            net.minecraft.client.MinecraftClient client = net.minecraft.client.MinecraftClient.getInstance();
+            if (client.player != null) modules.draw(client, new Gfx(ctx));
         });
-        LOGGER.info("Nova Client cargado con {} módulos.", modules.all().size());
+        Env.info("Nova Client cargado con " + modules.all().size() + " módulos.");
     }
 }

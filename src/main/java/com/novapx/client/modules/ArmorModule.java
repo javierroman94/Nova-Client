@@ -1,9 +1,8 @@
 package com.novapx.client.modules;
 
-import com.novapx.client.Compat;
+import com.novapx.client.Gfx;
 import com.novapx.client.Module;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 
@@ -14,17 +13,17 @@ public class ArmorModule extends Module {
     public ArmorModule() { super("armor", "Armadura", "Muestra tu armadura y objeto en mano con su durabilidad.", true); }
 
     @Override
-    public int draw(MinecraftClient c, DrawContext ctx, int x, int y) {
+    public int draw(MinecraftClient c, Gfx ctx, int x, int y) {
         if (c.player == null) return 0;
         int used = 0;
         for (EquipmentSlot slot : SLOTS) {
             ItemStack s = c.player.getEquippedStack(slot);
             if (s.isEmpty()) continue;
-            ctx.drawItem(s, x, y + used);
-            Compat.stackOverlay(ctx, c.textRenderer, s, x, y + used);
+            ctx.item(s, x, y + used);
+            ctx.overlay(s, x, y + used);
             if (s.isDamageable()) {
                 int left = s.getMaxDamage() - s.getDamage();
-                ctx.drawTextWithShadow(c.textRenderer, String.valueOf(left), x + 20, y + used + 5, 0xFFFFFFFF);
+                ctx.text(String.valueOf(left), x + 20, y + used + 5, 0xFFFFFFFF);
             }
             used += 18;
         }

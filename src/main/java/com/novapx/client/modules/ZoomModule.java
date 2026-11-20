@@ -1,5 +1,6 @@
 package com.novapx.client.modules;
 
+import com.novapx.client.Env;
 import com.novapx.client.Module;
 import com.novapx.client.NovaClient;
 import net.minecraft.client.MinecraftClient;
@@ -13,13 +14,12 @@ public class ZoomModule extends Module {
 
     @Override
     public void tick(MinecraftClient client) {
-        var fov = client.options.getFov();
         boolean zooming = enabled && client.currentScreen == null && NovaClient.zoomKey.isPressed();
         if (zooming && savedFov < 0) {
-            savedFov = fov.getValue();
-            fov.setValue(ZOOM_FOV);
+            savedFov = Env.getFov(client);
+            Env.setFov(client, ZOOM_FOV);
         } else if (!zooming && savedFov >= 0) {
-            fov.setValue(savedFov);
+            Env.setFov(client, savedFov);
             savedFov = -1;
         }
     }

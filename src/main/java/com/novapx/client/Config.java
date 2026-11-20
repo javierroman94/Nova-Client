@@ -21,13 +21,13 @@ public final class Config {
         try {
             Path f = file();
             if (!Files.exists(f)) return;
-            JsonObject root = JsonParser.parseString(Files.readString(f)).getAsJsonObject();
+            JsonObject root = new JsonParser().parse(new String(Files.readAllBytes(f), java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
             JsonObject mods = root.has("modules") ? root.getAsJsonObject("modules") : new JsonObject();
             for (Module m : modules.all()) {
                 if (mods.has(m.id)) m.setEnabled(mods.get(m.id).getAsBoolean());
             }
         } catch (Exception e) {
-            NovaClient.LOGGER.warn("No se pudo leer la configuración de Nova Client: {}", e.toString());
+            Env.warn("No se pudo leer la configuración de Nova Client: " + e);
         }
     }
 
@@ -37,9 +37,9 @@ public final class Config {
             for (Module m : modules.all()) mods.addProperty(m.id, m.isEnabled());
             JsonObject root = new JsonObject();
             root.add("modules", mods);
-            Files.writeString(file(), GSON.toJson(root));
+            Files.write(file(), GSON.toJson(root).getBytes(java.nio.charset.StandardCharsets.UTF_8));
         } catch (Exception e) {
-            NovaClient.LOGGER.warn("No se pudo guardar la configuración de Nova Client: {}", e.toString());
+            Env.warn("No se pudo guardar la configuración de Nova Client: " + e);
         }
     }
 }

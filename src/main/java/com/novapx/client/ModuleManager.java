@@ -7,7 +7,6 @@ import com.novapx.client.modules.FpsModule;
 import com.novapx.client.modules.KeystrokesModule;
 import com.novapx.client.modules.ZoomModule;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,16 +32,16 @@ public final class ModuleManager {
     }
 
     /** Dibuja el HUD: primero el texto de los módulos simples y luego los módulos gráficos. */
-    public void draw(MinecraftClient client, DrawContext ctx) {
+    public void draw(MinecraftClient client, Gfx ctx) {
         if (client.options.hudHidden || Compat.debugOpen(client)) return;
         int x = 6, y = 6;
         for (Module m : modules) {
             if (!m.isEnabled()) continue;
             String line = m.line(client);
             if (line == null) continue;
-            int w = client.textRenderer.getWidth(line);
+            int w = ctx.width(line);
             ctx.fill(x - 3, y - 2, x + w + 3, y + 10, 0x88000000);
-            ctx.drawTextWithShadow(client.textRenderer, line, x, y, 0xFFFFFFFF);
+            ctx.text(line, x, y, 0xFFFFFFFF);
             y += 14;
         }
         for (Module m : modules) {

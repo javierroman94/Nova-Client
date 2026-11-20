@@ -1,7 +1,6 @@
 package com.novapx.client;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 
 /** Un módulo del cliente: se puede activar o desactivar desde el menú Nova y puede dibujar en el HUD. */
 public abstract class Module {
@@ -28,5 +27,5 @@ public abstract class Module {
     public String line(MinecraftClient client) { return null; }
 
     /** Dibujo propio. Devuelve la altura usada en píxeles (0 si no dibuja nada). */
-    public int draw(MinecraftClient client, DrawContext ctx, int x, int y) { return 0; }
+    public int draw(MinecraftClient client, Gfx ctx, int x, int y) { return 0; }
 }
