@@ -22,6 +22,7 @@ processResources {
 // Pequeñas diferencias de API entre versiones de Minecraft viven en src/compat/<variante>.
 sourceSets.main.java.srcDir "src/compat/${project.compat}/java"
 sourceSets.main.java.srcDir "src/fam-${project.family}/java"
+if (project.family == 'ms15') sourceSets.main.java.exclude { el -> el.file.absolutePath.contains('/src/main/java/') && (el.name == 'NovaClient.java' || el.name == 'KeystrokesModule.java') } // ms15 trae sus propias copias (otra ruta de KeyBinding)
 
 tasks.withType(JavaCompile).configureEach { options.release = (project.java_version as int) }
 java { withSourcesJar(); sourceCompatibility = JavaVersion.toVersion(project.java_version); targetCompatibility = JavaVersion.toVersion(project.java_version) }
