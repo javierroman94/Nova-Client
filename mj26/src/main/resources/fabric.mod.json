@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "nova_client",
+  "version": "${version}",
+  "name": "Nova Client",
+  "description": "Cliente Nova PX: menú in-game y módulos de HUD (FPS, CPS, teclas, zoom, coordenadas, armadura).",
+  "authors": ["Nova PX"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": { "client": ["com.novapx.client.NovaClient"] },
+  "depends": { "fabricloader": ">=0.18.0", "minecraft": "${mc_range}", "java": ">=25", "fabric-api": "*" }
+}
