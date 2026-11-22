@@ -33,6 +33,7 @@ public class NovaClient implements ClientModInitializer {
             net.minecraft.client.MinecraftClient client = net.minecraft.client.MinecraftClient.getInstance();
             if (client.player != null) modules.draw(client, new Gfx(ctx));
         });
+        Env.initTitle();
         Env.info("Nova Client cargado con " + modules.all().size() + " módulos.");
     }
 }

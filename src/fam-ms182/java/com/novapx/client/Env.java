@@ -18,4 +18,5 @@ public final class Env {
     }
     public static net.minecraft.client.option.KeyBinding[] moveKeys(MinecraftClient c) { return new net.minecraft.client.option.KeyBinding[]{ c.options.forwardKey, c.options.leftKey, c.options.backKey, c.options.rightKey, c.options.jumpKey }; }
     public static void open(MinecraftClient c, Screen s) { c.setScreen(s); }
+    public static void initTitle() { }
 }
