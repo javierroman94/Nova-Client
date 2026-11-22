@@ -16,7 +16,11 @@ dependencies {
 processResources {
     inputs.property 'version', project.version
     inputs.property 'mc_range', project.mc_range
-    filesMatching('fabric.mod.json') { expand 'version': project.version, 'mc_range': project.mc_range, 'java_version': project.java_version }
+    inputs.property 'fabric_version', project.fabric_version
+    // Fabric API hasta Minecraft 1.19.1 (0.58.x o menor) se llama «fabric»; de ahí en adelante «fabric-api».
+def apiMinor = (project.fabric_version.toString().split('\\+')[0].split('\\.')[1] ?: '999') as int
+def apiId = (project.fabric_version.toString().startsWith('0.') && apiMinor < 59) ? 'fabric' : 'fabric-api'
+filesMatching('fabric.mod.json') { expand 'version': project.version, 'mc_range': project.mc_range, 'java_version': project.java_version, 'api_id': apiId }
 }
 
 // Pequeñas diferencias de API entre versiones de Minecraft viven en src/compat/<variante>.

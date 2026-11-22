@@ -8,5 +8,5 @@
   "license": "MIT",
   "environment": "client",
   "entrypoints": { "client": ["com.novapx.client.NovaClient"] },
-  "depends": { "fabricloader": ">=0.14.0", "minecraft": "${mc_range}", "java": ">=${java_version}", "fabric-api": "*" }
+  "depends": { "fabricloader": ">=0.14.0", "minecraft": "${mc_range}", "java": ">=${java_version}", "${api_id}": "*" }
 }
