@@ -104,10 +104,17 @@ jobs:
       - if: steps.v.outputs.tag != ''
         uses: actions/download-artifact@v4
         with: { path: jars, pattern: nova-client-*, merge-multiple: true }
+      - name: Generar el texture pack Nova
+        if: steps.v.outputs.tag != ''
+        run: |
+          pip install --quiet pillow
+          python3 tools/gen_pack.py
       - if: steps.v.outputs.tag != ''
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.v.outputs.tag }}
           target_commitish: ${{ github.sha }}
-          files: jars/*.jar
+          files: |
+            jars/*.jar
+            dist/Nova-Pack.zip
           generate_release_notes: true

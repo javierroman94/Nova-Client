@@ -33,6 +33,15 @@ Abre el menú con **Shift derecho** y activa o desactiva cada módulo. Tu elecci
 
 El HUD se oculta solo con F1 y con el menú de depuración (F3).
 
+## 🎨 Texture pack Nova
+
+Un texture pack propio para que los menús combinen con el cliente: **azul noche con acento cian**, botones con brillo al pasar el ratón, hotbar con selector luminoso, mira cian, inventario y cofres en panel claro (el texto sigue leyéndose) y fondo de menús con estrellas.
+
+- **Un solo archivo para todas las versiones:** `Nova-Pack.zip` (en cada [release](https://github.com/javierroman94/nova-client/releases/latest)). Funciona de la 1.15.2 a la 26.x.
+- **Instalación:** ponlo en la carpeta `resourcepacks` y actívalo en *Opciones → Paquetes de recursos*. Si el juego avisa «hecho para otra versión», se puede usar igual.
+- Cambia: botones, hotbar, mira, inventario, mesa de crafteo, cofres, shulker, dispensador y fondos de menú. No toca los objetos ni los bloques.
+- Se genera con `python3 tools/gen_pack.py` (necesita Pillow); los dibujos son propios, no copian los de Minecraft.
+
 ## 📥 Instalación
 
 1. Instala [Fabric Loader](https://fabricmc.net/use/) y el [Fabric API](https://modrinth.com/mod/fabric-api) de tu versión (en 26.x hace falta Java 25).
