@@ -11,6 +11,9 @@ public final class ModuleManager {
     private final List<Module> modules = new ArrayList<>();
 
     public ModuleManager() {
+        // Modos: encender uno apaga el otro y ajusta módulos y gráficos (NovaMode).
+        modules.add(new ModeModule(true));
+        modules.add(new ModeModule(false));
         modules.add(new FpsModule());
         modules.add(new CpsModule());
         modules.add(new CoordsModule());
