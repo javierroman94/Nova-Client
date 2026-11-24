@@ -2,12 +2,20 @@ package com.novapx.client;
 
 /** Dibujo del menú de Nova Client (igual en todas las versiones; solo cambia la pantalla que lo contiene). */
 public final class MenuPainter {
-    public static final int PANEL_W = 340, ROW_H = 30, PAD = 14, HEADER_H = 46, FOOTER_H = 40;
+    public static final int PANEL_W = 340, PAD = 14, HEADER_H = 46, FOOTER_H = 40;
+    /** Alto de cada fila: 30, o menos (hasta 24) si la pantalla es baja, para que el menú quepa entero. */
+    public static int ROW_H = 30;
     private static final int COL_PANEL = 0xEE12101C, COL_BORDER = 0xFF7C4DFF, COL_HEADER = 0xFF1B1730, COL_ROW = 0x1AFFFFFF, COL_ROW_ON = 0x337C4DFF;
 
     private MenuPainter() {}
 
-    public static int panelHeight(ModuleManager modules) { return HEADER_H + modules.all().size() * ROW_H + FOOTER_H + 6; }
+    public static int panelHeight(ModuleManager modules) {
+        int n = Math.max(1, modules.all().size());
+        int sh = 0;
+        try { sh = net.minecraft.client.MinecraftClient.getInstance().getWindow().getScaledHeight(); } catch (Throwable ignored) {}
+        ROW_H = sh <= 0 ? 30 : Math.max(24, Math.min(30, (sh - 16 - HEADER_H - FOOTER_H - 6) / n));
+        return HEADER_H + n * ROW_H + FOOTER_H + 6;
+    }
 
     public static void panel(Gfx g, ModuleManager modules, int sw, int sh, int left, int top, int panelH) {
         g.fill(0, 0, sw, sh, 0x66000000);
@@ -27,11 +35,11 @@ public final class MenuPainter {
         g.text("\u00a77Activa o desactiva cada m\u00f3dulo" + (version.isEmpty() ? "" : "  \u00b7  v" + version), left + PAD, top + 24, 0xFFAAAAAA);
         int y = top + HEADER_H;
         for (Module m : modules.all()) {
-            g.text((m.isEnabled() ? "\u00a7f" : "\u00a77") + m.name, left + PAD, y + 5, 0xFFFFFFFF);
+            g.text((m.isEnabled() ? "\u00a7f" : "\u00a77") + m.name, left + PAD, y + (ROW_H >= 27 ? 5 : 8), 0xFFFFFFFF);
             String d = m.description;
             int max = PANEL_W - PAD * 2 - 60;
             if (g.width(d) > max) d = g.trim(d, max - 6) + "\u2026";
-            g.text("\u00a78" + d, left + PAD, y + 16, 0xFF888888);
+            if (ROW_H >= 27) g.text("\u00a78" + d, left + PAD, y + 16, 0xFF888888);
             y += ROW_H;
         }
         g.centered("\u00a77Shift derecho para abrir y cerrar", sw / 2, top + panelH - 12, 0xFF777777);
