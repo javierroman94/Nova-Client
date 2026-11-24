@@ -52,7 +52,12 @@ public final class NovaMode {
             Files.write(file, merge(text, pvp ? PVP : CLASSIC).getBytes(StandardCharsets.UTF_8));
             c.options.load();
             c.options.save();
-            if (c.levelRenderer != null) c.levelRenderer.allChanged();
+            // 26.1 lo llama allChanged y 26.2+ resetLevelRenderData: se usa el que exista.
+            if (c.levelRenderer != null) {
+                for (String name : new String[] {"resetLevelRenderData", "allChanged"}) {
+                    try { c.levelRenderer.getClass().getMethod(name).invoke(c.levelRenderer); break; } catch (NoSuchMethodException ignored) {}
+                }
+            }
         } catch (Exception e) {
             NovaClient.LOG.warn("No se pudieron cambiar los gráficos del modo: " + e);
         }
