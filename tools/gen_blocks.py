@@ -48,7 +48,7 @@ def stone(base, seed):
 
 
 def cobble(base, seed):
-    r = rng(seed); pts = [(r() * 16, r() * 16) for _ in range(7)]
+    r = rng(seed); pts = [(1 + (i % 3) * 5.3 + r() * 2.5, 1 + (i // 3) * 5.3 + r() * 2.5) for i in range(9)]
     im = Image.new('RGBA', (16, 16)); own = [[0] * 16 for _ in range(16)]
     for y in range(16):
         for x in range(16):
@@ -61,9 +61,9 @@ def cobble(base, seed):
         for x in range(16):
             i, gap = own[y][x]
             tone = shade(base, .86 + (i * 37 % 20) / 100)
-            if gap < 7:
-                tone = shade(base, .48)
-            elif gap < 14:
+            if gap < 3:
+                tone = shade(base, .5)
+            elif gap < 8:
                 tone = shade(tone, .85)
             elif own[(y - 1) % 16][x][0] != i or own[y][(x - 1) % 16][0] != i:
                 tone = shade(tone, 1.18)
