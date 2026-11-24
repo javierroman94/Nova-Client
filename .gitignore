@@ -4,3 +4,4 @@
 build/
 dist/
 run/
+__pycache__/

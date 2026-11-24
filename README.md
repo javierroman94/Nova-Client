@@ -30,6 +30,9 @@ Abre el menú con **Shift derecho** y activa o desactiva cada módulo. Tu elecci
 | **Teclas** | W A S D y espacio en pantalla; se iluminan al pulsarlas. |
 | **Armadura** | Tu armadura y el objeto en mano con su durabilidad. |
 | **Zoom** | Mantén **C** para acercar la vista; al soltar vuelve tu FOV. |
+| **Animaciones suaves** | El jugador respira, gira el torso al caminar y se inclina al correr (1.16.5 a 1.21.1). |
+
+Con Nova Client la ventana se llama **Nova PX · Minecraft …** y F3 muestra **nova** como cliente.
 
 El HUD se oculta solo con F1 y con el menú de depuración (F3).
 
@@ -54,42 +57,42 @@ Si usas el Nova PX Event Launcher, crea un perfil **Nova** y el launcher instala
 
 | Minecraft | Java | Archivo |
 |---|---|---|
-| 1.15.2 | Java 8 | `nova-client-0.5.1+mc1.15.2.jar` |
-| 1.16.5 | Java 8 | `nova-client-0.5.1+mc1.16.5.jar` |
-| 1.17 | Java 16 | `nova-client-0.5.1+mc1.17.jar` |
-| 1.17.1 | Java 16 | `nova-client-0.5.1+mc1.17.1.jar` |
-| 1.18 | Java 17 | `nova-client-0.5.1+mc1.18.jar` |
-| 1.18.1 | Java 17 | `nova-client-0.5.1+mc1.18.1.jar` |
-| 1.18.2 | Java 17 | `nova-client-0.5.1+mc1.18.2.jar` |
-| 1.19 | Java 17 | `nova-client-0.5.1+mc1.19.jar` |
-| 1.19.1 | Java 17 | `nova-client-0.5.1+mc1.19.1.jar` |
-| 1.19.2 | Java 17 | `nova-client-0.5.1+mc1.19.2.jar` |
-| 1.19.3 | Java 17 | `nova-client-0.5.1+mc1.19.3.jar` |
-| 1.19.4 | Java 17 | `nova-client-0.5.1+mc1.19.4.jar` |
-| 1.20 | Java 17 | `nova-client-0.5.1+mc1.20.jar` |
-| 1.20.1 | Java 17 | `nova-client-0.5.1+mc1.20.1.jar` |
-| 1.20.2 | Java 17 | `nova-client-0.5.1+mc1.20.2.jar` |
-| 1.20.3 | Java 17 | `nova-client-0.5.1+mc1.20.3.jar` |
-| 1.20.4 | Java 17 | `nova-client-0.5.1+mc1.20.4.jar` |
-| 1.20.5 | Java 21 | `nova-client-0.5.1+mc1.20.5.jar` |
-| 1.20.6 | Java 21 | `nova-client-0.5.1+mc1.20.6.jar` |
-| 1.21 | Java 21 | `nova-client-0.5.1+mc1.21.jar` |
-| 1.21.1 | Java 21 | `nova-client-0.5.1+mc1.21.1.jar` |
-| 1.21.2 | Java 21 | `nova-client-0.5.1+mc1.21.2.jar` |
-| 1.21.3 | Java 21 | `nova-client-0.5.1+mc1.21.3.jar` |
-| 1.21.4 | Java 21 | `nova-client-0.5.1+mc1.21.4.jar` |
-| 1.21.5 | Java 21 | `nova-client-0.5.1+mc1.21.5.jar` |
-| 1.21.6 | Java 21 | `nova-client-0.5.1+mc1.21.6.jar` |
-| 1.21.7 | Java 21 | `nova-client-0.5.1+mc1.21.7.jar` |
-| 1.21.8 | Java 21 | `nova-client-0.5.1+mc1.21.8.jar` |
-| 1.21.9 | Java 21 | `nova-client-0.5.1+mc1.21.9.jar` |
-| 1.21.10 | Java 21 | `nova-client-0.5.1+mc1.21.10.jar` |
-| 1.21.11 | Java 21 | `nova-client-0.5.1+mc1.21.11.jar` |
-| 26.1 | Java 25 | `nova-client-0.5.1+mc26.1.jar` |
-| 26.1.1 | Java 25 | `nova-client-0.5.1+mc26.1.1.jar` |
-| 26.1.2 | Java 25 | `nova-client-0.5.1+mc26.1.2.jar` |
-| 26.2 | Java 25 | `nova-client-0.5.1+mc26.2.jar` |
-| 26.3 | Java 25 | `nova-client-0.5.1+mc26.3.jar` |
+| 1.15.2 | Java 8 | `nova-client-0.6.0+mc1.15.2.jar` |
+| 1.16.5 | Java 8 | `nova-client-0.6.0+mc1.16.5.jar` |
+| 1.17 | Java 16 | `nova-client-0.6.0+mc1.17.jar` |
+| 1.17.1 | Java 16 | `nova-client-0.6.0+mc1.17.1.jar` |
+| 1.18 | Java 17 | `nova-client-0.6.0+mc1.18.jar` |
+| 1.18.1 | Java 17 | `nova-client-0.6.0+mc1.18.1.jar` |
+| 1.18.2 | Java 17 | `nova-client-0.6.0+mc1.18.2.jar` |
+| 1.19 | Java 17 | `nova-client-0.6.0+mc1.19.jar` |
+| 1.19.1 | Java 17 | `nova-client-0.6.0+mc1.19.1.jar` |
+| 1.19.2 | Java 17 | `nova-client-0.6.0+mc1.19.2.jar` |
+| 1.19.3 | Java 17 | `nova-client-0.6.0+mc1.19.3.jar` |
+| 1.19.4 | Java 17 | `nova-client-0.6.0+mc1.19.4.jar` |
+| 1.20 | Java 17 | `nova-client-0.6.0+mc1.20.jar` |
+| 1.20.1 | Java 17 | `nova-client-0.6.0+mc1.20.1.jar` |
+| 1.20.2 | Java 17 | `nova-client-0.6.0+mc1.20.2.jar` |
+| 1.20.3 | Java 17 | `nova-client-0.6.0+mc1.20.3.jar` |
+| 1.20.4 | Java 17 | `nova-client-0.6.0+mc1.20.4.jar` |
+| 1.20.5 | Java 21 | `nova-client-0.6.0+mc1.20.5.jar` |
+| 1.20.6 | Java 21 | `nova-client-0.6.0+mc1.20.6.jar` |
+| 1.21 | Java 21 | `nova-client-0.6.0+mc1.21.jar` |
+| 1.21.1 | Java 21 | `nova-client-0.6.0+mc1.21.1.jar` |
+| 1.21.2 | Java 21 | `nova-client-0.6.0+mc1.21.2.jar` |
+| 1.21.3 | Java 21 | `nova-client-0.6.0+mc1.21.3.jar` |
+| 1.21.4 | Java 21 | `nova-client-0.6.0+mc1.21.4.jar` |
+| 1.21.5 | Java 21 | `nova-client-0.6.0+mc1.21.5.jar` |
+| 1.21.6 | Java 21 | `nova-client-0.6.0+mc1.21.6.jar` |
+| 1.21.7 | Java 21 | `nova-client-0.6.0+mc1.21.7.jar` |
+| 1.21.8 | Java 21 | `nova-client-0.6.0+mc1.21.8.jar` |
+| 1.21.9 | Java 21 | `nova-client-0.6.0+mc1.21.9.jar` |
+| 1.21.10 | Java 21 | `nova-client-0.6.0+mc1.21.10.jar` |
+| 1.21.11 | Java 21 | `nova-client-0.6.0+mc1.21.11.jar` |
+| 26.1 | Java 25 | `nova-client-0.6.0+mc26.1.jar` |
+| 26.1.1 | Java 25 | `nova-client-0.6.0+mc26.1.1.jar` |
+| 26.1.2 | Java 25 | `nova-client-0.6.0+mc26.1.2.jar` |
+| 26.2 | Java 25 | `nova-client-0.6.0+mc26.2.jar` |
+| 26.3 | Java 25 | `nova-client-0.6.0+mc26.3.jar` |
 
 Cada versión se compila por separado en GitHub Actions (pestaña *Actions*) y al subir una etiqueta `vX.Y.Z` se publican todos los `.jar` en una sola release.
 

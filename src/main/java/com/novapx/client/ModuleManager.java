@@ -5,6 +5,7 @@ import com.novapx.client.modules.CoordsModule;
 import com.novapx.client.modules.CpsModule;
 import com.novapx.client.modules.FpsModule;
 import com.novapx.client.modules.KeystrokesModule;
+import com.novapx.client.modules.SmoothAnimModule;
 import com.novapx.client.modules.ZoomModule;
 import net.minecraft.client.MinecraftClient;
 
@@ -22,7 +23,14 @@ public final class ModuleManager {
         modules.add(new KeystrokesModule());
         modules.add(new ArmorModule());
         modules.add(new ZoomModule());
+        // Las animaciones necesitan un mixin que no existe en todas las versiones de Minecraft.
+        if (hasMixins()) modules.add(new SmoothAnimModule());
         // Para añadir un módulo nuevo: crea la clase en modules/ y regístrala aquí.
+    }
+
+    private static boolean hasMixins() {
+        return net.fabricmc.loader.api.FabricLoader.getInstance().getModContainer("nova_client")
+                .map(c -> c.findPath("nova_client.anim.mixins.json").isPresent()).orElse(false);
     }
 
     public List<Module> all() { return Collections.unmodifiableList(modules); }
