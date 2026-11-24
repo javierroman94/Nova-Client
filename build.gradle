@@ -13,6 +13,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
+// Las animaciones del jugador (mixin) existen solo donde BipedEntityModel conserva su forma antigua (hasta 1.21.1).
+def hasAnim = ['none', 'legacy', 'base'].contains(project.compat) && project.family != 'ms15' // en 1.15.2 el torso se llama distinto
+
 processResources {
     inputs.property 'version', project.version
     inputs.property 'mc_range', project.mc_range
@@ -20,12 +23,20 @@ processResources {
     // Fabric API hasta Minecraft 1.19.1 (0.58.x o menor) se llama «fabric»; de ahí en adelante «fabric-api».
 def apiMinor = (project.fabric_version.toString().split('\\+')[0].split('\\.')[1] ?: '999') as int
 def apiId = (project.fabric_version.toString().startsWith('0.') && apiMinor < 59) ? 'fabric' : 'fabric-api'
-filesMatching('fabric.mod.json') { expand 'version': project.version, 'mc_range': project.mc_range, 'java_version': project.java_version, 'api_id': apiId }
+filesMatching('fabric.mod.json') { expand 'version': project.version, 'mc_range': project.mc_range, 'java_version': project.java_version, 'api_id': apiId, 'mixins': hasAnim ? '"mixins": ["nova_client.mixins.json", "nova_client.anim.mixins.json"],' : '"mixins": ["nova_client.mixins.json"],' }
 }
 
 // Pequeñas diferencias de API entre versiones de Minecraft viven en src/compat/<variante>.
 sourceSets.main.java.srcDir "src/compat/${project.compat}/java"
 sourceSets.main.java.srcDir "src/fam-${project.family}/java"
+// Marca Nova (F3 y título de ventana) en todas las versiones.
+loom { mixin { useLegacyMixinAp = true; add sourceSets.main, 'nova_client-refmap.json' } }
+sourceSets.main.java.srcDir "src/brand/java"
+sourceSets.main.resources.srcDir "src/brand/resources"
+if (hasAnim) {
+    sourceSets.main.java.srcDir "src/anim-old/java"
+    sourceSets.main.resources.srcDir "src/anim-old/resources"
+}
 if (project.family == 'ms15') sourceSets.main.java.exclude { el -> el.file.absolutePath.contains('/src/main/java/') && (el.name == 'NovaClient.java' || el.name == 'KeystrokesModule.java') } // ms15 trae sus propias copias (otra ruta de KeyBinding)
 
 tasks.withType(JavaCompile).configureEach { options.release = (project.java_version as int) }

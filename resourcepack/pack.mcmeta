@@ -1,0 +1,15 @@
+{
+  "pack": {
+    "pack_format": 34,
+    "supported_formats": {
+      "min_inclusive": 5,
+      "max_inclusive": 120
+    },
+    "min_format": 5,
+    "max_format": [
+      120,
+      0
+    ],
+    "description": "§bNova§r §7· interfaz de Nova Client\n§8Menús azul noche, acento cian"
+  }
+}

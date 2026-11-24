@@ -1,0 +1,9 @@
+{
+  "required": false,
+  "refmap": "nova_client-refmap.json",
+  "minVersion": "0.8",
+  "package": "com.novapx.client.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": ["BrandMixin", "TitleMixin"],
+  "injectors": { "defaultRequire": 0 }
+}
