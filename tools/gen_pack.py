@@ -4,7 +4,8 @@ Genera el texture pack «Nova» (interfaz de Nova Client) con dibujos propios, a
 Uso:  python3 tools/gen_pack.py        →  resourcepack/  y  dist/Nova-Pack.zip
 Un solo pack sirve para todas las versiones: incluye las rutas antiguas (hasta 1.20.1) y las nuevas (1.20.2 en adelante).
 """
-import json, os, zipfile
+import json, os, sys, zipfile
+sys.path.insert(0, os.path.dirname(__file__))
 from PIL import Image, ImageDraw
 
 OUT = os.path.join(os.path.dirname(__file__), '..', 'resourcepack')
@@ -421,6 +422,8 @@ def main():
     # --- contenedores (iguales en todas las versiones) ---
     for name, im in (('inventory', inventory()), ('crafting_table', crafting()), ('generic_54', generic54()), ('shulker_box', shulker()), ('dispenser', dispenser())):
         save(im, 'assets', 'minecraft', 'textures', 'gui', 'container', name + '.png')
+    import gen_items
+    gen_items.build(OUT)
     save(pack_icon(), 'pack.png')
     meta = {'pack': {
         'pack_format': 34,

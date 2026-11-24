@@ -39,7 +39,7 @@ Un texture pack propio para que los menús combinen con el cliente: **azul noche
 
 - **Un solo archivo para todas las versiones:** `Nova-Pack.zip` (en cada [release](https://github.com/javierroman94/nova-client/releases/latest)). Funciona de la 1.15.2 a la 26.x.
 - **Instalación:** ponlo en la carpeta `resourcepacks` y actívalo en *Opciones → Paquetes de recursos*. Si el juego avisa «hecho para otra versión», se puede usar igual.
-- Cambia: botones, hotbar, mira, inventario, mesa de crafteo, cofres, shulker, dispensador y fondos de menú. No toca los objetos ni los bloques.
+- Cambia: botones, hotbar, barra de XP arcoíris, mira, inventario, cofres y fondos de menú (con animaciones RGB desde la 1.20.2), **todos los ores con marco brillante** y los **ítems de minerales y comida** con dibujo sombreado.
 - Se genera con `python3 tools/gen_pack.py` (necesita Pillow); los dibujos son propios, no copian los de Minecraft.
 
 ## 📥 Instalación
