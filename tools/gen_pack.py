@@ -422,8 +422,9 @@ def main():
     # --- contenedores (iguales en todas las versiones) ---
     for name, im in (('inventory', inventory()), ('crafting_table', crafting()), ('generic_54', generic54()), ('shulker_box', shulker()), ('dispenser', dispenser())):
         save(im, 'assets', 'minecraft', 'textures', 'gui', 'container', name + '.png')
-    import gen_items
+    import gen_items, gen_blocks
     gen_items.build(OUT)
+    gen_blocks.build(OUT)
     save(pack_icon(), 'pack.png')
     meta = {'pack': {
         'pack_format': 34,
