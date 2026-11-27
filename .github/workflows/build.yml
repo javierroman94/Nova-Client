@@ -109,6 +109,17 @@ jobs:
         run: |
           pip install --quiet pillow
           python3 tools/gen_pack.py
+      # Manifiesto firmado (Ed25519) con las huellas de cada archivo. El launcher Nova PX lo exige cuando trae
+      # la llave pública de Nova; sin el secreto NOVA_FIRMA_PRIVADA la release sale sin firma, como hasta ahora.
+      - name: Firmar la release
+        if: steps.v.outputs.tag != ''
+        env:
+          NOVA_FIRMA_PRIVADA: ${{ secrets.NOVA_FIRMA_PRIVADA }}
+          FIRMA_OBLIGATORIA: ${{ vars.NOVA_FIRMA_OBLIGATORIA }}
+        run: |
+          if [ -n "$NOVA_FIRMA_PRIVADA" ]; then node tools/firmar-release.js "${{ steps.v.outputs.tag }}" jars/*.jar dist/Nova-Pack.zip; exit 0; fi
+          if [ "$FIRMA_OBLIGATORIA" = "true" ]; then echo "Falta el secreto NOVA_FIRMA_PRIVADA y la firma es obligatoria."; exit 1; fi
+          echo "Sin llave Nova configurada todavía: release sin manifiesto firmado."
       - if: steps.v.outputs.tag != ''
         uses: softprops/action-gh-release@v2
         with:
@@ -117,4 +128,6 @@ jobs:
           files: |
             jars/*.jar
             dist/Nova-Pack.zip
+            dist/nova-client*.json
+          fail_on_unmatched_files: false
           generate_release_notes: true
